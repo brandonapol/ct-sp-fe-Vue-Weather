@@ -4,6 +4,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import DashboardPage from '../views/DashboardPage.vue';
 import LandingPage from '../views/LandingPage.vue';
 import CityPage from '../views/CityPage.vue'
+import { authGuard } from '@auth0/auth0-vue';
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -23,7 +24,8 @@ const router = createRouter({
             component: DashboardPage,
             meta: {
                 title: 'Dashboard'
-            }
+            },
+            beforeEnter: authGuard
         },
         {
             path: "/weather/:state/:city",
@@ -31,7 +33,8 @@ const router = createRouter({
             component: CityPage,
             meta: {
                 title: "Weather"
-            }
+            },
+            beforeEnter: authGuard
         }
     ]
 })

@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@auth0/auth0-vue": "^1.0.2",
     "axios": "^1.2.1",
     "Math": "^0.0.1-security",
     "uid": "^2.0.1",

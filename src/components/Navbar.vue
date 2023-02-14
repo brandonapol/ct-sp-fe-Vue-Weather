@@ -23,8 +23,13 @@
                     hover:text-secondary
                     duration-150 cursor-pointer"
                     @click="addCity"
-                    v-if="route.query"
+                    v-if="$route.name === 'city' && route.query.preview"
                     ></i>
+                    <i class="fas fa-sign-out-alt text-xl
+                    hover:text-secondary
+                    duration-150 cursor-pointer"
+                    @click="log_out"
+                    v-if="isAuthenticated"></i>
             </div>
             <Modal
                 :modalActive="modalActive"
@@ -75,6 +80,7 @@ import { ref } from "vue";
 import Modal from './Modal.vue';
 import { RouterLink, useRoute, useRouter } from "vue-router";
 import { uid } from "uid";
+import { useAuth0 } from '@auth0/auth0-vue';
 
 // instantiate router
 const route = useRoute();
@@ -119,6 +125,12 @@ const modalActive = ref(null);
 const toggleModal = () => {
     modalActive.value = !modalActive.value
 }
+
+// Logout function
+const { isAuthenticated, logout } = useAuth0();
+const log_out = () => {
+          logout({ returnTo: window.location.origin });
+        }
 
 
 </script>
